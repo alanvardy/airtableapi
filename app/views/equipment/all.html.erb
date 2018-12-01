@@ -2,13 +2,14 @@
 <p>Find me in app/views/equipment/all.html.erb</p>
 <% @equipment.each do |item| %>
     <% item = item.fields %>
-    <p><%= item["Make"] %></p>
-    <p><%= item["Type"] %></p>
-    <p><%= item["Model"] %></p>
-    <p><%= item["Serial"] %></p>
+    <p>Make: <%= item["Make"] %></p>
+    <p>Type: <%= item["Type"] %></p>
+    <p>Model: <%= item["Model"] %></p>
+    <p>Serial: <%= item["Serial"] %></p>
+    <p>Attachments:</p>
 <% item["Attachments"].each do |pic| %>
         <a href="<%= pic["url"] %>">
-        <%= image_tag pic["thumbnails"]["small"]["url"] %>
+        <%= image_tag pic["thumbnails"]["large"]["url"] %>
         </a>
     <% end %>
 <% end %>
