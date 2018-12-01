@@ -1,15 +1,15 @@
 <h1>Equipment#all</h1>
 <p>Find me in app/views/equipment/all.html.erb</p>
 <% @equipment.each do |item| %>
-    <% item = item.fields %>
-    <p>Make: <%= item["Make"] %></p>
-    <p>Type: <%= item["Type"] %></p>
-    <p>Model: <%= item["Model"] %></p>
-    <p>Serial: <%= item["Serial"] %></p>
+    <h2>Item # <%= item.fields["#"] %>: <%= item.fields["Make"] %> <%= item.fields["Type"] %></h2>
+    <p>Model: <%= item.fields["Model"] %>, Serial: <%= item.fields["Serial"] %></p>
+        <p><a href="/equipment/<%= item.id %>">Equipment Page</a></p>
     <p>Attachments:</p>
-<% item["Attachments"].each do |pic| %>
-        <a href="<%= pic["url"] %>">
-        <%= image_tag pic["thumbnails"]["large"]["url"] %>
-        </a>
+    <% if !item.fields["Attachments"].nil? %>
+        <% item.fields["Attachments"].each do |pic| %>
+                <a href="<%= pic["url"] %>">
+                <%= image_tag pic["thumbnails"]["large"]["url"] %>
+                </a>
+        <% end %>
     <% end %>
 <% end %>

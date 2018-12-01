@@ -1,0 +1,12 @@
+    <p>Make: <%= @equipment.fields["Make"] %></p>
+    <p>Type: <%= @equipment.fields["Type"] %></p>
+    <p>Model: <%= @equipment.fields["Model"] %></p>
+    <p>Serial: <%= @equipment.fields["Serial"] %></p>
+    <p>Attachments:</p>
+    <% if !@equipment.fields["Attachments"].nil? %>
+        <% @equipment.fields["Attachments"].each do |pic| %>
+                <a href="<%= pic["url"] %>">
+                <%= image_tag pic["thumbnails"]["large"]["url"] %>
+                </a>
+        <% end %>
+    <% end %>
