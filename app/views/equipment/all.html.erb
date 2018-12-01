@@ -1,0 +1,14 @@
+<h1>Equipment#all</h1>
+<p>Find me in app/views/equipment/all.html.erb</p>
+<% @equipment.each do |item| %>
+    <% item = item.fields %>
+    <p><%= item["Make"] %></p>
+    <p><%= item["Type"] %></p>
+    <p><%= item["Model"] %></p>
+    <p><%= item["Serial"] %></p>
+<% item["Attachments"].each do |pic| %>
+        <a href="<%= pic["url"] %>">
+        <%= image_tag pic["thumbnails"]["small"]["url"] %>
+        </a>
+    <% end %>
+<% end %>
