@@ -1,6 +1,8 @@
-<h1>Equipment#all</h1>
-<p>Find me in app/views/equipment/all.html.erb</p>
-<% @equipment.each do |item| %>
+
+    <h1>Site # <%= @site.fields["SiteNumber"] %>: <%= @site.fields["Name"] %></h1>
+    <p>Address: <%= @site.fields["SiteAddress"] %>, <%= @site.fields["SiteCity"] %> <%= @site.fields["Postal Code"] %></p>
+    <h2>Site Equipment:</h2>
+    <% @equipment.each do |item| %>
     <h2>Item # <%= item.fields["#"] %>: <%= item.fields["Make"] %> <%= item.fields["Type"] %></h2>
     <p>Model: <%= item.fields["Model"] %>, Serial: <%= item.fields["Serial"] %></p>
         <p><a href="/equipment/<%= item.id %>">Equipment Page</a></p>

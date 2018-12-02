@@ -1,5 +1,5 @@
 class EquipmentController < ApplicationController
-  def all
+  def index
     expires_in 1.minute, public: true
     @equipment = Equipment.all.reverse
   end
