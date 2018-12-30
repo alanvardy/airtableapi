@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'login', to: 'user_session#new'
+  post 'login', to: 'user_session#create'
+  get 'logout', to: 'user_session#destroy'
+  get 'user_session/new'
+  get 'user_session/create'
+  get 'user_session/destroy'
+  resources :users
   get 'static/index'
   get 'session/new'
   post 'session/create'

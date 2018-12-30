@@ -20,7 +20,7 @@ class SessionController < ApplicationController
       redirect_to root_path
     else
       @admin.password = nil
-      flash[:notice] = 'Sorry, wrong credentials'
+      flash.now[:notice] = 'Sorry, wrong credentials'
       render 'new'
     end
   end

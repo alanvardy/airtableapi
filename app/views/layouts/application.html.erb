@@ -11,8 +11,16 @@
 
   <body>
   <div class="my-4 container">
+  <% flash.each do |message_type, message| %>
+        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+<% end %>
     <%= yield %>
     <p class="text-center">
+    <% if logged_in? %>
+        <%= link_to 'User Log out', logout_path, class: 'btn btn-sm btn-outline-info' %>
+    <% else %>
+        <%= link_to 'User Login', login_path, class: 'btn btn-sm btn-outline-info' %>
+    <% end %>
     <% if admin? %>
         <%= link_to 'Admin Log out', session_destroy_path, class: 'btn btn-sm btn-outline-info' %>
     <% else %>
