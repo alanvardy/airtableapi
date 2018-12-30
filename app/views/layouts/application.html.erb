@@ -9,8 +9,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-  <div class="my-4 container">
+  <body class="bg-secondary">
+  <%= render 'layouts/admin_navbar' if admin? %>
+  <%= render 'layouts/user_navbar' if logged_in? %>
+  <div class="my-4 container bg-white p-3 rounded">
   <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
 <% end %>
