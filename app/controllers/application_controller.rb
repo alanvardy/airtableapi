@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include UserSessionHelper
+
   ApplicationNotAuthenticated = Class.new(StandardError)
 
   rescue_from ApplicationNotAuthenticated do
