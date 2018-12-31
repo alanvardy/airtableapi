@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Airtableapi</title>
+    <title>Airtable API</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,23 +12,12 @@
   <body class="bg-secondary">
   <%= render 'layouts/admin_navbar' if admin? %>
   <%= render 'layouts/user_navbar' if logged_in? %>
-  <div class="my-4 container bg-white p-3 rounded">
-  <% flash.each do |message_type, message| %>
-        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-<% end %>
-    <%= yield %>
-    <p class="text-center">
-    <% if logged_in? %>
-        <%= link_to 'User Log out', logout_path, class: 'btn btn-sm btn-outline-info' %>
-    <% else %>
-        <%= link_to 'User Login', login_path, class: 'btn btn-sm btn-outline-info' %>
-    <% end %>
-    <% if admin? %>
-        <%= link_to 'Admin Log out', session_destroy_path, class: 'btn btn-sm btn-outline-info' %>
-    <% else %>
-        <%= link_to 'Admin Login', session_new_path, class: 'btn btn-sm btn-outline-info' %>
-    <% end %>
-  </div>
-</p>
+    <div class="my-4 container bg-white p-3 rounded">
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+    </div>
+        <p class="text-center">
+            <%= link_to 'Admin Login', session_new_path, class: 'btn btn-sm btn-outline-warning' unless admin? %>
+        </p>
   </body>
 </html>
