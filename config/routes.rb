@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :permissions
   get 'login', to: 'user_session#new'
   post 'login', to: 'user_session#create'
   get 'logout', to: 'user_session#destroy'
