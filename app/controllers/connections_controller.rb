@@ -25,6 +25,7 @@ class ConnectionsController < ApplicationController
   # POST /connections.json
   def create
     @connection = Connection.new(connection_params)
+    @connection.title = Site.find(@connection.site_id).title
 
     respond_to do |format|
       if @connection.save
@@ -40,6 +41,7 @@ class ConnectionsController < ApplicationController
   # PATCH/PUT /connections/1
   # PATCH/PUT /connections/1.json
   def update
+    @connection.update_attribute(:title, Site.find(@connection.site_id).title)
     respond_to do |format|
       if @connection.update(connection_params)
         format.html { redirect_to @connection, notice: 'Connection was successfully updated.' }

@@ -11,4 +11,8 @@ class Site < Airrecord::Table
   def title
     fields['Name']
   end
+
+  def url
+    "/sites/#{id}"
+  end
 end
