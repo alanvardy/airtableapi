@@ -13,13 +13,15 @@
   <strong>Permission:</strong>
   <%= @user.permission.title %>
 </p>
-<p>
-  <strong>Connections:</strong>
-  <ul>
-  <% @user.connections.each do |c| %>
-    <li><%= link_to Site.find(c.site_id).title, c %></li>
-  <% end %>
-  </ul>
-</p>
+<% if @user.permission.value.zero? %>
+  <p>
+    <strong>Connections:</strong>
+    <ul>
+    <% @user.connections.each do |c| %>
+      <li><%= link_to Site.find(c.site_id).title, c %></li>
+    <% end %>
+    </ul>
+  </p>
+<% end %>
 <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-sm btn-outline-info' %>
 <%= link_to 'Back', users_path, class: 'btn btn-sm btn-outline-secondary' %>
