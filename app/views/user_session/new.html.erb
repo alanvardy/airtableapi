@@ -1,24 +1,36 @@
 <div class="content">
     <section>
-    <div class="row d-flex justify-content-center">
-    <div class="col-12 col-md-6 col-lg-4">
-    <h1>User Login</h1>
-      <%= form_with url: login_path do |f| %>
-        <div class="form-group">
-          <%= f.label :email %>
-          <%= f.text_field :email, class: 'form-control'%>
-        </div>
+      <h1 class="text-center">User Login</h1>
+        <div class="row mt-4">
+          <div class="col-12 col-md-6 p-5">
+            <%= form_with url: login_path do |f| %>
+              <div class="form-group">
+                <%= f.text_field :email, class: 'form-control', placeholder: 'email'%>
+              </div>
 
-        <div class="form-group">
-          <%= f.label :password %>
-          <%= f.password_field :password, class: 'form-control'%>
-        </div>
+              <div class="form-group">
+                <%= f.password_field :password, class: 'form-control', placeholder: 'password'%>
+              </div>
 
-        <div class="form-group">
-          <%= f.submit 'Log In', class: 'btn btn-outline-primary'%>
-        </div>
-      <% end %>
-    </div>
-    </div>
+              <div class="form-group d-flex justify-content-around">
+                <%= f.submit 'Log In', class: 'btn btn-outline-primary'%>
+                <%= link_to 'Back', root_path, class: 'btn btn-outline-secondary' %>
+              </div>
+            <% end %>
+          </div>
+            <div class="col-12 col-md-6">
+            <p>Feel free to log in using any of the following combinations:
+            <ul>
+                <li>client@example.com<span class="text-muted"> | </span>password <br><small class="text-muted">(Client access to own site)</small></li>
+                <li>technician@example.com<span class="text-muted"> | </span>password <br><small class="text-muted">(Technician access to all sites)</small></li>
+                <li>manager@example.com<span class="text-muted"> | </span>password <br><small class="text-muted">(Manager access to all sites, user accounts, and user settings)</small></li>
+            </ul>
+            </p>
+
+
+
+
+
+          </div>
     </section>
 </div>

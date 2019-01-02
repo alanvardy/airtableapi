@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
   def authentication_required!
     session[:current_user] || raise(ApplicationNotAuthenticated)
   end
+
+  def access_control
+    current_user.permission.value
+  end
 end

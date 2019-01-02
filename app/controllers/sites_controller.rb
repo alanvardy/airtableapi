@@ -1,6 +1,7 @@
 class SitesController < ApplicationController
+  
   def index
-    @sites = Site.all
+    @sites = access_control.zero? ? current_user.sites : Site.all
   end
 
   def show

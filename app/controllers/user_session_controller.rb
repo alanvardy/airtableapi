@@ -10,7 +10,7 @@ class UserSessionController < ApplicationController
       log_in(user)
       redirect_to user
     else
-      flash[:notice] = 'Sorry, wrong credentials'
+      flash.now[:notice] = 'Sorry, wrong credentials'
       render 'new'
     end
   end

@@ -33,15 +33,6 @@ ActiveRecord::Schema.define(version: 2019_01_02_163719) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "site_views", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "site_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["site_id"], name: "index_site_views_on_site_id"
-    t.index ["user_id"], name: "index_site_views_on_user_id"
-  end
-
   create_table "sites", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
