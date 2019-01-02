@@ -9,6 +9,14 @@
   <strong>Value:</strong>
   <%= @permission.value %>
 </p>
+<p>
+  <strong>Users:</strong>
+  <ul>
+  <% @permission.users.each do |u| %>
+    <li><%= link_to u.name, u %></li>
+  <% end %>
+  </ul>
+</p>
 
-<%= link_to 'Edit', edit_permission_path(@permission) %> |
-<%= link_to 'Back', permissions_path %>
+<%= link_to 'Edit', edit_permission_path(@permission), class: 'btn btn-sm btn-outline-info' %>
+<%= link_to 'Back', permissions_path, class: 'btn btn-sm btn-outline-secondary' %>

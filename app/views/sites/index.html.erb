@@ -1,16 +1,13 @@
 <h1>All Sites</h1>
+<table>
 <% @sites.each do |item| %>
-    <h2>Site # <%= item.fields["SiteNumber"] %>: <%= item.fields["Name"] %></h2>
-    <p>Address: <%= item.fields["SiteAddress"] %>, <%= item.fields["SiteCity"] %> <%= item.fields["Postal Code"] %></p>
-    <% item.equipment.each do |equip| %>
-        <% if !equip.fields["Attachments"].nil? %>
-            <% equip.fields["Attachments"].each do |pic| %>
-                <a href="<%= pic["url"] %>">
-                <%= image_tag pic["thumbnails"]["small"]["url"] %>
-                </a>
-            <% end %>
-        <% end %>
-    <% end %>
-    <p><a href="/sites/<%= item.id %>">Site Page</a></p>
-    </br></br>
+    <tr>
+        <td><a href="<%= item.url %>">#<%= item.fields["SiteNumber"] %> <%= item.fields["Name"] %></a></td>
+        <td><%= item.fields["SiteAddress"] %>, <%= item.fields["SiteCity"] %> <%= item.fields["Postal Code"] %></td>
+
+
+
+
+    </tr>
 <% end %>
+</table>
