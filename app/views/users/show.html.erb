@@ -13,6 +13,11 @@
   <strong>Permission:</strong>
   <%= @user.permission.title %>
 </p>
-
+<p><strong>Connections:</strong></p>
+<ul>
+<% @user.connections.each do |c| %>
+  <li><%= Site.find(c.site_id).title %> <%= link_to 'edit', c %></li>
+<% end %>
+</ul>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

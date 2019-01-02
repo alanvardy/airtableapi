@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Site:</strong>
+  <%= Site.find(@connection.site_id).title %>
+</p>
+
+<p>
+  <strong>Users:</strong>
+  <%= @connection.user.name %>
+</p>
+
+<%= link_to 'Edit', edit_connection_path(@connection) %> |
+<%= link_to 'Destroy', @connection, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', connections_path %>

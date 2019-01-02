@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_31_210656) do
+ActiveRecord::Schema.define(version: 2019_01_02_004201) do
+
+  create_table "connections", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "site_id"
+    t.index ["user_id"], name: "index_connections_on_user_id"
+  end
 
   create_table "equipment", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -22,6 +30,15 @@ ActiveRecord::Schema.define(version: 2018_12_31_210656) do
     t.integer "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "site_views", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["site_id"], name: "index_site_views_on_site_id"
+    t.index ["user_id"], name: "index_site_views_on_user_id"
   end
 
   create_table "sites", force: :cascade do |t|
