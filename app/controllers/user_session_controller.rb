@@ -10,7 +10,6 @@ class UserSessionController < ApplicationController
       log_in(user)
       redirect_to user
     else
-
       flash[:danger] = 'Sorry, wrong credentials'
       redirect_to login_path
     end

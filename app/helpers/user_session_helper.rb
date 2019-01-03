@@ -3,7 +3,8 @@
 module UserSessionHelper
   def log_in(user)
     session[:user_id] = user.id
-    session[:access] = current_user.permission.value
+    session[:access] = user.permission.value
+    session[:connected_sites] = user.sites.map(&:id)
   end
 
   def current_user

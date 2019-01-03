@@ -32,10 +32,16 @@ class ApplicationController < ActionController::Base
 
   def reject_access
     flash[:danger] = 'Insufficient access level'
-    redirect_to current_user
+    if current_user.nil?
+      redirect_to login_path
+    else
+      redirect_to current_user
+    end
   end
 end
 
 def connected_site?(site_id)
-  current_user.sites.map(&:id).include? site_id
+  return false if session[:connected_sites].nil?
+
+  session[:connected_sites].include? site_id
 end
