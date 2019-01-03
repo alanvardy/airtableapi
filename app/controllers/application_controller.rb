@@ -16,8 +16,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authentication_required!
+  def check_admin
     session[:admin] || raise(ApplicationNotAuthenticated)
+  end
+
+  def check_access_level(num)
+    reject_access unless access_level num
   end
 
   def access_level(num)
@@ -25,4 +29,13 @@ class ApplicationController < ActionController::Base
 
     session[:access] >= num
   end
+
+  def reject_access
+    flash[:danger] = 'Insufficient access level'
+    redirect_to current_user
+  end
+end
+
+def connected_site?(site_id)
+  current_user.sites.map(&:id).include? site_id
 end

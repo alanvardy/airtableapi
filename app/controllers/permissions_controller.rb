@@ -1,5 +1,6 @@
 class PermissionsController < ApplicationController
   before_action :set_permission, only: [:show, :edit, :update, :destroy]
+  before_action -> { check_access_level(2) }
 
   # GET /permissions
   # GET /permissions.json

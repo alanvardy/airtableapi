@@ -8,7 +8,7 @@
       <li class="nav-item">
         <%= link_to 'Sites', sites_index_path, class: 'nav-link' %>
       </li>
-      <% if access_control 1 %>
+      <% if access_level 1 %>
         <li class="nav-item">
           <%= link_to 'Users', users_path, class: 'nav-link' %>
         </li>
