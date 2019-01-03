@@ -1,17 +1,32 @@
 
-    <h1>Site # <%= @site.fields["SiteNumber"] %>: <%= @site.fields["Name"] %></h1>
-    <p>Address: <%= @site.fields["SiteAddress"] %>, <%= @site.fields["SiteCity"] %> <%= @site.fields["Postal Code"] %></p>
+    <h1>#<%= @site.fields["SiteNumber"] %>: <%= @site.fields["Name"] %></h1>
+    <p><%= @site.fields["SiteAddress"] %>, <%= @site.fields["SiteCity"] %> <%= @site.fields["Postal Code"] %></p>
     <h2>Site Equipment:</h2>
-    <% @equipment.each do |item| %>
-    <h2>Item # <%= item.fields["#"] %>: <%= item.fields["Make"] %> <%= item.fields["Type"] %></h2>
-    <p>Model: <%= item.fields["Model"] %>, Serial: <%= item.fields["Serial"] %></p>
-        <p><a href="/equipment/<%= item.id %>">Equipment Page</a></p>
-    <p>Attachments:</p>
-    <% if !item.fields["Attachments"].nil? %>
-        <% item.fields["Attachments"].each do |pic| %>
-                <a href="<%= pic["url"] %>">
-                <%= image_tag pic["thumbnails"]["large"]["url"] %>
-                </a>
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Type</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Serial</th>
+            <th>View Equipment</th>
+            <th>Attachments</th>
+        </tr>
+        <% @equipment.each do |item| %>
+        <tr>
+            <td><%= item.fields["#"] %></td>
+            <td><%= item.fields["Type"] %></td>
+            <td><%= item.fields["Make"] %></td>
+            <td><%= item.fields["Model"] %></td>
+            <td><%= item.fields["Serial"] %></td>
+            <td><a href="/equipment/<%= item.id %>">View</a></td>
+            <td><% if !item.fields["Attachments"].nil? %>
+                <% item.fields["Attachments"].each do |pic| %>
+                        <a href="<%= pic["url"] %>">
+                        <%= image_tag pic["thumbnails"]["small"]["url"] %>
+                        </a>
+                <% end %>
+            <% end %></td>
+        </tr>
         <% end %>
-    <% end %>
-<% end %>
+    </table>

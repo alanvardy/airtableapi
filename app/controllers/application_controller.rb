@@ -17,10 +17,12 @@ class ApplicationController < ActionController::Base
   end
 
   def authentication_required!
-    session[:current_user] || raise(ApplicationNotAuthenticated)
+    session[:admin] || raise(ApplicationNotAuthenticated)
   end
 
-  def access_control
-    current_user.permission.value
+  def access_level(num)
+    return false if session[:access].nil?
+
+    session[:access] >= num
   end
 end
