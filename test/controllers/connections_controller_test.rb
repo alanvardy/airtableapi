@@ -117,16 +117,53 @@ class ConnectionsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  # test "should update connection" do
-  #   patch connection_url(@connection), params: { connection: { sites_id: @connection.sites_id, users_id: @connection.users_id } }
-  #   assert_redirected_to connection_url(@connection)
-  # end
+  test "shouldn't update connection when not logged in" do
+    patch connection_url(@connection), params: { connection: { site_id: @connection.site_id, user_id: @connection.user_id } }
+    assert_redirected_to login_path
+  end
 
-  # test "should destroy connection" do
-  #   assert_difference('Connection.count', -1) do
-  #     delete connection_url(@connection)
-  #   end
+  test "shouldn't update connection when insufficient permissions" do
+    log_in @client
+    patch connection_url(@connection), params: { connection: { site_id: @connection.site_id, user_id: @connection.user_id } }
+    assert_redirected_to user_path(@client)
+    log_in @technician
+    patch connection_url(@connection), params: { connection: { site_id: @connection.site_id, user_id: @connection.user_id } }
+    assert_redirected_to user_path(@technician)
+  end
 
-  #   assert_redirected_to connections_url
-  # end
+  test "should update connection when sufficient permissions" do
+    log_in @manager
+    patch connection_url(@connection), params: { connection: { site_id: @connection.site_id, user_id: @connection.user_id } }
+    assert_redirected_to connection_url(@connection)
+  end
+
+  test "shouldn't destroy connection when not logged in" do
+    assert_no_difference('Connection.count', -1) do
+      delete connection_url(@connection)
+    end
+
+    assert_redirected_to login_path
+  end
+  test "shouldn't destroy connection when insufficient permissions" do
+    log_in @client
+    assert_no_difference('Connection.count', -1) do
+      delete connection_url(@connection)
+    end
+
+    assert_redirected_to user_path(@client)
+    log_in @technician
+    assert_no_difference('Connection.count', -1) do
+      delete connection_url(@connection)
+    end
+
+    assert_redirected_to user_path(@technician)
+  end
+  test "should destroy connection when sufficient permissions" do
+    log_in @manager
+    assert_difference('Connection.count', -1) do
+      delete connection_url(@connection)
+    end
+
+    assert_redirected_to connections_url
+  end
 end
