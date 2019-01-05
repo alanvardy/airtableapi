@@ -19,7 +19,7 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.permission.title %></td>
-        <td><%= pluralize(user.connections.count, 'connection') %></td>
+        <td><%= user.num_sites %></td>
 
         <td><%= link_to 'Show', user, class: 'btn btn-sm btn-outline-primary' %></td>
         <td><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-sm btn-outline-info' %></td>

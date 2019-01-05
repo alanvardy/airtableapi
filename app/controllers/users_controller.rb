@@ -2,6 +2,8 @@
 
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update destroy]
+  before_action -> { check_access_level(2) }, except: [:show]
+  before_action -> { check_access_level(0) }, only: [:show]
 
   # GET /users
   # GET /users.json
@@ -11,7 +13,9 @@ class UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
-  def show; end
+  def show
+    reject_access unless (access_level(2)) || (params[:id].to_i == session[:user_id])
+  end
 
   # GET /users/new
   def new

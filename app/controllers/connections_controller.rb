@@ -2,6 +2,7 @@
 
 class ConnectionsController < ApplicationController
   before_action :set_connection, only: %i[show edit update destroy]
+  before_action { check_access_level(2) }
 
   # GET /connections
   # GET /connections.json

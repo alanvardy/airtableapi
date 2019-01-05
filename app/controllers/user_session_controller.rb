@@ -10,13 +10,13 @@ class UserSessionController < ApplicationController
       log_in(user)
       redirect_to user
     else
-      flash.now[:notice] = 'Sorry, wrong credentials'
-      render 'new'
+      flash[:danger] = 'Sorry, wrong credentials'
+      redirect_to login_path
     end
   end
 
   def destroy
-    session[:user_id] = nil
+    reset_session
     flash[:success] = 'You have logged out'
     redirect_to root_path
   end

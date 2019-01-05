@@ -5,5 +5,9 @@ module ApplicationHelper
     session[:admin]
   end
 
+  def access_level(num)
+    return false if session[:access].nil?
 
+    session[:access] >= num
+  end
 end
