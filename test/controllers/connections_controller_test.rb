@@ -4,17 +4,7 @@ require 'test_helper'
 
 class ConnectionsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @p0 = Permission.create(title: 'Client', value: 0)
-    @p1 = Permission.create(title: 'Technician', value: 1)
-    @p2 = Permission.create(title: 'Manager', value: 2)
-    @client = User.create(name: 'Client', email: 'client@a.com', password: 'password', password_confirmation: 'password', permission_id: @p0.id)
-    @technician = User.create(name: 'Technician', email: 'technician@a.com', password: 'password', password_confirmation: 'password', permission_id: @p1.id)
-    @manager = User.create(name: 'Manager', email: 'manager@a.com', password: 'password', password_confirmation: 'password', permission_id: @p2.id)
-
-    @site = Site.all.first
-    @connected_site = Site.all.last
-
-    @connection = Connection.create(user_id: @client.id, site_id: @connected_site.id)
+    fill_db
   end
 
   test "shouldn't get index when not logged in" do
