@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_access_level(num)
-    reject_access unless access_level num
+    reject_access unless access_level num || admin?
   end
 
   def access_level(num)
