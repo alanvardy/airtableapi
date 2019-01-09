@@ -4,11 +4,7 @@ class SitesController < ApplicationController
   before_action -> { check_access_level(0) }
 
   def index
-    if access_level(1)
-      @sites = Site.all
-    elsif access_level(0)
-      @sites = current_user.sites
-    end
+    @sites = current_user.sites
   end
 
   def show

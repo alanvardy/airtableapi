@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class EquipmentController < ApplicationController
-  before_action -> { check_access_level(1) }, only: [:index]
+  before_action -> { check_access_level(2) }, only: [:index]
   before_action -> { check_access_level(0) }, only: [:show]
 
   def index
