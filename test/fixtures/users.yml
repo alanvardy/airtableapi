@@ -1,0 +1,15 @@
+client:
+  name: "Clint Client"
+  email: "client@example.com"
+  password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
+  permission: p0
+technician:
+  name: "Terrence Technician"
+  email: "technician@example.com"
+  password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
+  permission: p1
+manager:
+  name: "Madaline Manager"
+  email: "manager@example.com"
+  password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
+  permission: p2
