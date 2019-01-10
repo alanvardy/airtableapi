@@ -14,7 +14,6 @@ class ActiveSupport::TestCase
   def fill_db
     @site = Site.all.first
     @connected_site = Site.all.last
-
     @connection = Connection.create(user_id: users(:client).id, site_id: @connected_site.id)
   end
 end
