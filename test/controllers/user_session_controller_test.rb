@@ -3,9 +3,6 @@
 require 'test_helper'
 
 class UserSessionControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    fill_db
-  end
 
   test 'should get new' do
     get login_path

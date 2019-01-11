@@ -3,6 +3,11 @@ client:
   email: "client@example.com"
   password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
   permission: p0
+linked_client:
+  name: "Clint has access"
+  email: "linked_client@example.com"
+  password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
+  permission: p0
 technician:
   name: "Terrence Technician"
   email: "technician@example.com"

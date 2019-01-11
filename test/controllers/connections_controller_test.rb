@@ -4,9 +4,9 @@ require 'test_helper'
 
 class ConnectionsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    fill_db
+    make_sites
   end
-
+  
   test "shouldn't get index when not logged in" do
     get connections_url
     assert_redirected_to login_path

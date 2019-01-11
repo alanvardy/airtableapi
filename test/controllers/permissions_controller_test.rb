@@ -3,9 +3,6 @@
 require 'test_helper'
 
 class PermissionsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    fill_db
-  end
 
   test "shouldn't get index when not admin" do
     get permissions_url

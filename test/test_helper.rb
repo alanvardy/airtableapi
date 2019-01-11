@@ -11,9 +11,8 @@ class ActiveSupport::TestCase
     post login_path, params: { email: user.email, password: 'password' }
   end
 
-  def fill_db
+  def make_sites
     @site = Site.all.first
-    @connected_site = Site.all.last
-    @connection = Connection.create(user_id: users(:client).id, site_id: @connected_site.id)
+    @connection = Connection.create(user_id: users(:linked_client).id, site_id: @site.id)
   end
 end

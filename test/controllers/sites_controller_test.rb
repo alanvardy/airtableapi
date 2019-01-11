@@ -4,7 +4,7 @@ require 'test_helper'
 
 class SitesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    fill_db
+    make_sites
   end
 
   test "shouldn't get index when not logged in" do
@@ -34,8 +34,8 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get show with sufficient permissions' do
-    log_in users(:client)
-    get "/sites/#{@connected_site.id}"
+    log_in users(:linked_client)
+    get "/sites/#{@site.id}"
     assert_response :success
 
     log_in users(:technician)

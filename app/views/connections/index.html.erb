@@ -15,7 +15,7 @@
     <% @connections.each do |connection| %>
       <tr>
         <td><%= connection.title %></td>
-        <td><%= connection.user.name %></td>
+        <td><%= connection.username %></td>
         <td><%= link_to 'Show', connection, class: 'btn btn-sm btn-outline-primary' %></td>
         <td><%= link_to 'Edit', edit_connection_path(connection), class: 'btn btn-sm btn-outline-info' %></td>
         <td><%= link_to 'Destroy', connection, method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Are you sure?' } %></td>
