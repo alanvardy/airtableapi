@@ -4,9 +4,9 @@ require 'test_helper'
 
 class ConnectionsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    make_sites
+    load_airtable_objects
   end
-  
+
   test "shouldn't get index when not logged in" do
     get connections_url
     assert_redirected_to login_path
