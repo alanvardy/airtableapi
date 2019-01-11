@@ -17,6 +17,7 @@ class ConnectionsController < ApplicationController
   # GET /connections/new
   def new
     @connection = Connection.new
+    @connection.user_id = params[:user_id]
   end
 
   # GET /connections/1/edit
@@ -30,7 +31,8 @@ class ConnectionsController < ApplicationController
 
     respond_to do |format|
       if @connection.save
-        format.html { redirect_to @connection, notice: 'Connection was successfully created.' }
+        flash[:info] = 'Connection was successfully created.'
+        format.html { redirect_to @connection }
         format.json { render :show, status: :created, location: @connection }
       else
         format.html { render :new }
@@ -45,7 +47,8 @@ class ConnectionsController < ApplicationController
     @connection.update_attribute(:title, Site.find(@connection.site_id).title)
     respond_to do |format|
       if @connection.update(connection_params)
-        format.html { redirect_to @connection, notice: 'Connection was successfully updated.' }
+        flash[:info] = 'Connection was successfully updated.'
+        format.html { redirect_to @connection }
         format.json { render :show, status: :ok, location: @connection }
       else
         format.html { render :edit }
@@ -59,7 +62,8 @@ class ConnectionsController < ApplicationController
   def destroy
     @connection.destroy
     respond_to do |format|
-      format.html { redirect_to connections_url, notice: 'Connection was successfully destroyed.' }
+      flash[:info] = 'Connection was successfully destroyed.'
+      format.html { redirect_to connections_url }
       format.json { head :no_content }
     end
   end

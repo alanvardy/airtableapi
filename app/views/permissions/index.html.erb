@@ -20,7 +20,7 @@
         <td><%= pluralize(permission.users.count, 'user') %></td>
         <td><%= link_to 'Show', permission, class: 'btn btn-sm btn-outline-primary' %></td>
         <td><%= link_to 'Edit', edit_permission_path(permission), class: 'btn btn-sm btn-outline-info' %></td>
-        <td><%= link_to 'Destroy', permission, method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', permission, method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

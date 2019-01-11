@@ -18,10 +18,15 @@
     <strong>Connections:</strong>
     <ul>
     <% @user.connections.each do |c| %>
-      <li><%= link_to Site.find(c.site_id).title, c %></li>
+      <li>
+        <%= link_to Site.find(c.site_id).title, c %>
+        <%= link_to 'Delete', c, method: :delete, class: 'text-danger small', data: { confirm: 'Are you sure?' } %>
+      </li>
     <% end %>
     </ul>
+    <%= link_to 'Add connection', new_connection_path(user_id: @user.id), class: 'btn btn-sm btn-outline-info' %>
   </p>
 <% end %>
 <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-sm btn-outline-info' %>
+<%= link_to 'Delete', @user, method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: 'Are you sure?' } %>
 <%= link_to 'Back', users_path, class: 'btn btn-sm btn-outline-secondary' %>
