@@ -8,6 +8,9 @@ require_relative '../config/environment'
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
+  @@site = Site.all.first
+  @@equipment = @@site.equipment.first
+
   fixtures :all
 
   def log_in(user)
@@ -21,9 +24,9 @@ class ActiveSupport::TestCase
   end
 
   def load_airtable_objects
-    @site = Site.all.first
+    # @site = Site.all.first
     @connection = Connection.create(user_id: users(:linked_client).id,
-                                    site_id: @site.id)
-    @equipment = @site.equipment.first
+                                    site_id: @@site.id)
+    # @equipment = @site.equipment.first
   end
 end

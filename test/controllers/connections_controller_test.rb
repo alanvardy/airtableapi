@@ -74,7 +74,7 @@ class ConnectionsControllerTest < ActionDispatch::IntegrationTest
   test 'should create connection when sufficient access permissions' do
     log_in users(:manager)
     assert_difference('Connection.count') do
-      post connections_url, params: { connection: { site_id: @site.id,
+      post connections_url, params: { connection: { site_id: @@site.id,
                                                     user_id: users(:client).id } }
     end
 
@@ -84,7 +84,7 @@ class ConnectionsControllerTest < ActionDispatch::IntegrationTest
   test 'shouldn\'t create connection when sufficient access permissions and bad data' do
     log_in users(:manager)
     assert_no_difference('Connection.count') do
-      post connections_url, params: { connection: { site_id: @site.id,
+      post connections_url, params: { connection: { site_id: @@site.id,
                                                     user_id: 99 } }
     end
   end
