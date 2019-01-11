@@ -49,7 +49,8 @@ class ConnectionsControllerTest < ActionDispatch::IntegrationTest
 
   test "shouldn't create connection when not logged in" do
     assert_no_difference('Connection.count') do
-      post connections_url, params: { connection: { site_id: @connection.site_id, user_id: @connection.user_id } }
+      post connections_url, params: { connection: {   site_id: @connection.site_id,
+                                                      user_id: @connection.user_id } }
     end
 
     assert_redirected_to login_path
@@ -58,12 +59,14 @@ class ConnectionsControllerTest < ActionDispatch::IntegrationTest
   test "shouldn't create connection when insufficient access permissions" do
     log_in users(:client)
     assert_no_difference('Connection.count') do
-      post connections_url, params: { connection: { site_id: @connection.site_id, user_id: @connection.user_id } }
+      post connections_url, params: { connection: { site_id: @connection.site_id,
+                                                    user_id: @connection.user_id } }
     end
     assert_redirected_to user_path(users(:client))
     log_in users(:technician)
     assert_no_difference('Connection.count') do
-      post connections_url, params: { connection: { site_id: @connection.site_id, user_id: @connection.user_id } }
+      post connections_url, params: { connection: { site_id: @connection.site_id,
+                                                    user_id: @connection.user_id } }
     end
     assert_redirected_to user_path(users(:technician))
   end
@@ -71,10 +74,19 @@ class ConnectionsControllerTest < ActionDispatch::IntegrationTest
   test 'should create connection when sufficient access permissions' do
     log_in users(:manager)
     assert_difference('Connection.count') do
-      post connections_url, params: { connection: { site_id: @site.id, user_id: users(:client).id } }
+      post connections_url, params: { connection: { site_id: @site.id,
+                                                    user_id: users(:client).id } }
     end
 
     assert_redirected_to connection_url(Connection.last)
+  end
+
+  test 'shouldn\'t create connection when sufficient access permissions and bad data' do
+    log_in users(:manager)
+    assert_no_difference('Connection.count') do
+      post connections_url, params: { connection: { site_id: @site.id,
+                                                    user_id: 99 } }
+    end
   end
 
   test "shouldn't show connection when not logged in" do
@@ -118,23 +130,36 @@ class ConnectionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "shouldn't update connection when not logged in" do
-    patch connection_url(@connection), params: { connection: { site_id: @connection.site_id, user_id: @connection.user_id } }
+    patch connection_url(@connection), params: { connection: {  site_id: @connection.site_id,
+                                                                user_id: @connection.user_id } }
     assert_redirected_to login_path
   end
 
   test "shouldn't update connection when insufficient permissions" do
     log_in users(:client)
-    patch connection_url(@connection), params: { connection: { site_id: @connection.site_id, user_id: @connection.user_id } }
+    patch connection_url(@connection), params: { connection: {  site_id: @connection.site_id,
+                                                                user_id: @connection.user_id } }
     assert_redirected_to user_path(users(:client))
     log_in users(:technician)
-    patch connection_url(@connection), params: { connection: { site_id: @connection.site_id, user_id: @connection.user_id } }
+    patch connection_url(@connection), params: { connection: {  site_id: @connection.site_id,
+                                                                user_id: @connection.user_id } }
     assert_redirected_to user_path(users(:technician))
   end
 
   test 'should update connection when sufficient permissions' do
     log_in users(:manager)
-    patch connection_url(@connection), params: { connection: { site_id: @connection.site_id, user_id: @connection.user_id } }
-    assert_redirected_to connection_url(@connection)
+    patch connection_url(@connection), params: { connection: {  site_id: @connection.site_id,
+                                                                user_id: users(:manager).id } }
+    @connection.reload
+    assert_equal users(:manager).id, @connection.user_id
+  end
+
+  test 'shouldn\'t update connection when sufficient permissions and bad data' do
+    log_in users(:manager)
+    patch connection_url(@connection), params: { connection: {  site_id: @connection.site_id,
+                                                                user_id: 99 } }
+    @connection.reload
+    assert_not_equal 99, @connection.user_id
   end
 
   test "shouldn't destroy connection when not logged in" do

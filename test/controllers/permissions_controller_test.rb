@@ -160,6 +160,15 @@ class PermissionsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to permissions(:p0)
   end
 
+  test 'shouldn\'t update permission when admin and bad values' do
+    @admin = permissions(:p0)
+    log_in_admin
+    patch permission_url(@admin), params: { permission: { title: 'a' * 40,
+                                                          value: permissions(:p0).value } }
+    @admin.reload
+    assert_equal permissions(:p0).title, @admin.title
+  end
+
   test "shouldn't destroy permission when not admin" do
     assert_no_difference('Permission.count') do
       delete permission_url(permissions(:p0))
