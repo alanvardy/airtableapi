@@ -1,12 +1,18 @@
-    <p>Make: <%= @equipment.fields["Make"] %></p>
-    <p>Type: <%= @equipment.fields["Type"] %></p>
-    <p>Model: <%= @equipment.fields["Model"] %></p>
-    <p>Serial: <%= @equipment.fields["Serial"] %></p>
-    <p>Attachments:</p>
-    <% if !@equipment.fields["Attachments"].nil? %>
-        <% @equipment.fields["Attachments"].each do |pic| %>
-                <a href="<%= pic["url"] %>">
-                <%= image_tag pic["thumbnails"]["large"]["url"] %>
-                </a>
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <p>Make: <%= @equipment.fields["Make"] %></p>
+        <p>Type: <%= @equipment.fields["Type"] %></p>
+        <p>Model: <%= @equipment.fields["Model"] %></p>
+        <p>Serial: <%= @equipment.fields["Serial"] %></p>
+    </div>
+    <div class="col-12 col-lg-6">
+        <p>Attachments:</p>
+        <% if !@equipment.fields["Attachments"].nil? %>
+            <% @equipment.fields["Attachments"].each do |pic| %>
+                    <a href="<%= pic["url"] %>">
+                    <%= image_tag pic["thumbnails"]["large"]["url"], class: 'w-75 d-block rounded shadow mb-2' %>
+                    </a>
+            <% end %>
         <% end %>
-    <% end %>
+    </div>
+</div>

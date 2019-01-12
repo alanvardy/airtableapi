@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = Permission.all.map(&:users)
   end
 
   # GET /users/1

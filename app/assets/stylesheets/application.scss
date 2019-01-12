@@ -12,3 +12,17 @@
  */
 
 @import "bootstrap";
+
+a:hover {
+  text-decoration: none;
+}
+
+td {
+  padding-right: 15px;
+}
+
+th {
+  size: .8rem;
+  color: grey;
+  font-weight: normal;
+}
