@@ -6,4 +6,8 @@ class Connection < ApplicationRecord
   def username
     user.nil? ? '' : user.name
   end
+
+  def self.all_sorted
+    all.sort_by(&:title)
+  end
 end

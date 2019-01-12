@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-12 col-lg-6">
-        <p><span class= "text-muted">Make:</span> <%= @equipment.fields["Make"] %></p>
-        <p><span class= "text-muted">Type:</span> <%= @equipment.fields["Type"] %></p>
-        <p><span class= "text-muted">Model:</span> <%= @equipment.fields["Model"] %></p>
-        <p><span class= "text-muted">Serial:</span> <%= @equipment.fields["Serial"] %></p>
+        <p><span class= "text-muted">Make:</span> <%= @equipment.make %></p>
+        <p><span class= "text-muted">Type:</span> <%= @equipment.type %></p>
+        <p><span class= "text-muted">Model:</span> <%= @equipment.model %></p>
+        <p><span class= "text-muted">Serial:</span> <%= @equipment.serial %></p>
     </div>
     <div class="col-12 col-lg-6">
         <p><span class= "text-muted">Attachments:</span></p>
-        <% if !@equipment.fields["Attachments"].nil? %>
-            <% @equipment.fields["Attachments"].each do |pic| %>
+        <% if @equipment.attachments? %>
+            <% @equipment.attachments.each do |pic| %>
                     <a href="<%= pic["url"] %>">
                     <%= image_tag pic["thumbnails"]["large"]["url"], class: 'w-75 d-block rounded shadow mb-2' %>
                     </a>

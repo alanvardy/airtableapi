@@ -1,11 +1,11 @@
 <h1>All Equipment</h1>
 <% @equipment.each do |item| %>
-    <h2>Item # <%= item.fields["#"] %>: <%= item.fields["Make"] %> <%= item.fields["Type"] %></h2>
-    <p>Model: <%= item.fields["Model"] %>, Serial: <%= item.fields["Serial"] %></p>
-        <p><a href="/equipment/<%= item.id %>">Equipment Page</a></p>
+    <h2>Item # <%= item.number %>: <%= item.make %> <%= item.type %></h2>
+    <p>Model: <%= item.model %>, Serial: <%= item.serial %></p>
+    <p><%= link_to 'Equipment Page', item.url %></p>
     <p>Attachments:</p>
-    <% if !item.fields["Attachments"].nil? %>
-        <% item.fields["Attachments"].each do |pic| %>
+    <% if item.attachments? %>
+        <% item.attachments.each do |pic| %>
                 <a href="<%= pic["url"] %>">
                 <%= image_tag pic["thumbnails"]["large"]["url"] %>
                 </a>

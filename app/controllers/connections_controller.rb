@@ -7,7 +7,7 @@ class ConnectionsController < ApplicationController
   # GET /connections
   # GET /connections.json
   def index
-    @connections = Connection.all
+    @connections = Connection.all_sorted
   end
 
   # GET /connections/1
@@ -16,8 +16,7 @@ class ConnectionsController < ApplicationController
 
   # GET /connections/new
   def new
-    @connection = Connection.new
-    @connection.user_id = params[:user_id]
+    @connection = Connection.new(user_id: params[:user_id])
   end
 
   # GET /connections/1/edit

@@ -7,4 +7,44 @@ class Equipment < Airrecord::Table
   self.table_name = 'Equipment'
 
   belongs_to :site, class: 'Site', column: 'Site'
+
+  def self.all_cached
+    Rails.cache.fetch('all_equipment') { puts 'all equipment not cached'; all.reverse }
+  end
+
+  def self.one_cached(id)
+    Rails.cache.fetch("#{id}_equipment") { puts 'equipment not cached'; Equipment.find(id) }
+  end
+
+  def url
+    "/equipment/#{id}"
+  end
+
+  def attachments
+    fields['Attachments']
+  end
+
+  def attachments?
+    !attachments.nil?
+  end
+
+  def model
+    fields['Model']
+  end
+
+  def serial
+    fields['Serial']
+  end
+
+  def make
+    fields['Make']
+  end
+
+  def type
+    fields['Type']
+  end
+
+  def number
+    fields['#']
+  end
 end

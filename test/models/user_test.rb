@@ -9,7 +9,7 @@ class UserTest < ActiveSupport::TestCase
   end
   test 'returns a site count when two sites' do
     load_airtable_objects
-    @second_site = Site.all.last
+    @second_site = Site.all_cached.last
     @second_connection = Connection.create(site_id: @second_site.id,
                                            user_id: users(:linked_client).id)
     assert_equal '2 sites', users(:linked_client).num_sites
