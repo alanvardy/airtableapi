@@ -1,24 +1,27 @@
 <h1>Users</h1>
-<table class="table table-striped table-responsive">
-  <thead>
-    <tr>
-      <th scope="col" class="<%=  table_large %>">Name</th>
-      <th scope="col" class="<%=  table_large %>">Email</th>
-      <th scope="col" class="<%=  table_large %>">Level</th>
-      <th scope="col" class="<%=  table_large %>">Sites</th>
+<%= link_to 'New User', new_user_path, class: 'btn btn-sm btn-outline-info my-2' %>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col" class="<%=  table_large %>">Name</th>
+        <th scope="col" class="<%=  table_large %>">Email</th>
+        <th scope="col" class="<%=  table_large %>">Level</th>
+        <th scope="col" class="<%=  table_large %>">Sites</th>
 
-      <th scope="col" class="<%=  table_small %>">Name<br>Email</th>
-      <th scope="col" class="<%=  table_small %>">Level<br>Sites</th>
-    </tr>
-  </thead>
+        <th scope="col" class="<%=  table_small %>"><%= icon('fas', 'key') %> User</th>
+        <th scope="col" class="<%=  table_small %>"><%= icon('fas', 'key') %> Access</th>
+      </tr>
+    </thead>
 
-  <tbody>
+    <tbody>
 
-<% @users.each do |users| %>
-  <%= render 'users/list', users: users %>
-<% end %>
-  </tbody>
-</table>
+  <% @users.each do |users| %>
+    <%= render 'users/list', users: users %>
+  <% end %>
+    </tbody>
+  </table>
+</div>
 <br>
 
-<%= link_to 'New User', new_user_path, class: 'btn btn-sm btn-outline-info' %>
+<%= link_to 'New User', new_user_path, class: 'btn btn-sm btn-outline-info my-2' %>
