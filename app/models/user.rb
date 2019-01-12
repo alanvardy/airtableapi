@@ -16,9 +16,12 @@ class User < ApplicationRecord
 
   def sites
     if permission.value.positive?
-      Site.all
+      Site.all_cached
     else
-      connections.map { |c| Site.find(c.site_id) }
+      Rails.cache.fetch("user_#{id}_sites") do
+        puts 'user sites not cached'
+        connections.map { |c| Site.find(c.site_id) }
+      end
     end
   end
 

@@ -5,12 +5,11 @@ class EquipmentController < ApplicationController
   before_action -> { check_access_level(0) }, only: [:show]
 
   def index
-    expires_in 1.minute, public: true
-    @equipment = Equipment.all.reverse
+    @equipment = Equipment.all_cached
   end
 
   def show
-    @equipment = Equipment.find(params[:id])
+    @equipment = Equipment.one_cached(params[:id])
     reject_access unless access_level(1) || connected_site?(@equipment.site.id)
   end
 end

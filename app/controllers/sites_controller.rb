@@ -9,8 +9,8 @@ class SitesController < ApplicationController
 
   def show
     if access_level(1) || connected_site?(params[:id])
-      @site = Site.find(params[:id])
-      @equipment = @site.equipment.reverse
+      @site = Site.one_cached(params[:id])
+      @equipment = @site.cached_equipment
     else
       reject_access
     end

@@ -1,6 +1,7 @@
 
     <h1><%= @site.fields["Name"] %></h1>
-    <p><span class="badge badge-pill badge-primary"><%= @site.fields["SiteNumber"] %></span> <%= @site.fields["SiteAddress"] %>, <%= @site.fields["SiteCity"] %> <%= @site.fields["Postal Code"] %></p>
+    <p><span class="badge badge-pill badge-primary"><%= @site.fields["SiteNumber"] %></span>
+    <%= @site.fields["SiteAddress"] %>, <%= @site.fields["SiteCity"] %> <%= @site.fields["Postal Code"] %></p>
     <h2>Site Equipment:</h2>
     <div class="table-responsive">
         <table class="table table-striped">
@@ -18,27 +19,30 @@
                 <th class="<%=  table_small %>" scope="col"><%= icon('fas', 'paperclip') %></th>
             </tr>
             <% @equipment.each do |item| %>
-            <tr>
-                <th scope="row" class="<%=  table_large %>"><a href="/equipment/<%= item.id %>"><span class="badge badge-pill badge-info"><%= item.fields["#"] %></span></a></th>
-                <td class="<%=  table_large %>"><%= item.fields["Type"] %></td>
-                <td class="<%=  table_large %>"><%= item.fields["Make"] %></td>
-                <td class="<%=  table_large %>"><%= item.fields["Model"] %></td>
-                <td class="<%=  table_large %>"><%= item.fields["Serial"] %></td>
-                <td class="<%=  table_large %>"><%= item.fields["Attachments"].count %></td>
-                <td class="<%=  table_large %>"><%= link_to 'View', "/equipment/#{item.id}" %></td>
+                <tr>
+                    <th scope="row" class="<%=  table_large %>"><%= link_to item.url do %><span class="badge badge-pill badge-info"><%= item.number %></span><% end %></th>
+                    <td class="<%=  table_large %>"><%= item.type %></td>
+                    <td class="<%=  table_large %>"><%= item.make %></td>
+                    <td class="<%=  table_large %>"><%= item.model %></td>
+                    <td class="<%=  table_large %>"><%= item.serial %></td>
+                    <td class="<%=  table_large %>"><%= item.attachments.count %></td>
+                    <td class="<%=  table_large %>"><%= link_to 'View', item.url %></td>
 
-                <th scope="row" class="<%=  table_small %>">
-                    <a href="/equipment/<%= item.id %>">
-                        <span class="badge badge-pill badge-info">
-                            <%= item.fields["#"] %>
-                        </span>
-                    </a>
-                </th>
-                <td class="<%=  table_small %>"><%= link_to item.fields["Type"], "/equipment/#{item.id}" %><br>
-                <%= item.fields["Make"] %><br>
-                <span class="text-muted">M: </span><%= item.fields["Model"] %></strong><br><span class="text-muted">S: </span><%= item.fields["Serial"] %></td>
-                <td class="<%=  table_small %>"><%= item.fields["Attachments"].count %></td>
-            </tr>
+                    <th scope="row" class="<%=  table_small %>">
+                        <%= link_to item.url do %>
+                            <span class="badge badge-pill badge-info">
+                                <%= item.number %>
+                            </span>
+                        <% end %>
+                    </th>
+                    <td class="<%=  table_small %>">
+                        <%= link_to item.type, item.url %><br>
+                        <%= item.make %><br>
+                        <span class="text-muted">M: </span><%= item.model %></strong><br>
+                        <span class="text-muted">S: </span><%= item.serial %>
+                    </td>
+                    <td class="<%=  table_small %>"><%= item.attachments.count %></td>
+                </tr>
             <% end %>
         </table>
     </div>
