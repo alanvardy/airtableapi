@@ -1,0 +1,12 @@
+
+    <% users.each do |user| %>
+      <tr>
+        <td scope="row" class="<%=  table_large %>"><%= link_to user.name, user %></td>
+        <td class="<%=  table_large %>"><%= user.email %></td>
+        <td class="<%=  table_large %>"><%= user.permission.title %></td>
+        <td class="<%=  table_large %>"><%= user.num_sites %></td>
+
+        <td scope="row" class="<%=  table_small %>"><%= link_to user.name, user %><br><%= user.email %></td>
+        <td class="<%=  table_small %>"><%= user.permission.title %><br><%= user.num_sites %></td>
+      </tr>
+    <% end %>

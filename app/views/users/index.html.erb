@@ -1,33 +1,24 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Users</h1>
-
-<table>
+<table class="table table-striped table-responsive">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Permission Level</th>
-      <th>Sites</th>
-      <th colspan="3"></th>
+      <th scope="col" class="<%=  table_large %>">Name</th>
+      <th scope="col" class="<%=  table_large %>">Email</th>
+      <th scope="col" class="<%=  table_large %>">Level</th>
+      <th scope="col" class="<%=  table_large %>">Sites</th>
+
+      <th scope="col" class="<%=  table_small %>">Name<br>Email</th>
+      <th scope="col" class="<%=  table_small %>">Level<br>Sites</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.name, user %></td>
-        <td><%= user.email %></td>
-        <td><%= user.permission.title %></td>
-        <td><%= user.num_sites %></td>
 
-        <td></td>
-        <td></td>
-      </tr>
-    <% end %>
+<% @users.each do |users| %>
+  <%= render 'users/list', users: users %>
+<% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'New User', new_user_path, class: 'btn btn-sm btn-outline-info' %>

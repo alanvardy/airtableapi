@@ -4,6 +4,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
+  <div class="d-flex justify-content-between">
     <ul class="navbar-nav">
       <li class="nav-item">
         <%= link_to 'Sites', sites_index_path, class: 'nav-link' %>
@@ -15,17 +16,17 @@
         <li class="nav-item">
           <%= link_to 'Connections', connections_path, class: 'nav-link' %>
         </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to 'Account', current_user, class: 'nav-link' %>
-        </li>
       <% end %>
     </ul>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to current_user.name, current_user, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+            <%= link_to 'Log out', logout_path, class: 'ml-3 btn btn-sm btn-outline-primary mt-1' %>
+        </li>
+    </ul>
   </div>
-  <ul class="navbar-nav">
-      <li class="nav-item">
-        <%= link_to "Logged in as #{current_user.name}", current_user, class: 'nav-link' %>
-      </li>
-  </ul>
-  <%= link_to 'Log out', logout_path, class: 'ml-3 btn btn-sm btn-outline-primary' %>
+
+  </div>
 </nav>

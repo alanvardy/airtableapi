@@ -10,4 +10,12 @@ module ApplicationHelper
 
     session[:access] >= num
   end
+
+  def table_large
+    'd-none d-lg-table-cell'
+  end
+
+  def table_small
+    'd-table-cell d-lg-none'
+  end
 end
