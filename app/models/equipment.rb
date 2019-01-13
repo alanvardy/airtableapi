@@ -28,6 +28,10 @@ class Equipment < Airrecord::Table
     !attachments.nil?
   end
 
+  def num_attachments
+    fields['Attachments'].count
+  end
+
   def model
     fields['Model']
   end

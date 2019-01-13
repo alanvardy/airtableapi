@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
       Rails.cache.fetch("user_#{id}_sites", expires_in: 1.month, race_condition_ttl: 30.seconds) do
         puts 'user sites not cached'
-        connections.map { |c| Site.find(c.site_id) }
+        connections.map { |c| Site.find(c.site_id) }.sort_by(&:title)
       end
     end
   end

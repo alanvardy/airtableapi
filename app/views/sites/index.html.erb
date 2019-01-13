@@ -3,28 +3,43 @@
     <table class="table table-striped">
     <thead>
         <tr>
-            <th>Site</th>
-            <th>#</th>
-            <th>Address</th>
-            <th>Quantity of Equipment</th>
+            <th scope="col" class="<%=  table_large %>">Site</th>
+            <th scope="col" class="<%=  table_large %>">#</th>
+            <th scope="col" class="<%=  table_large %>">Address</th>
+            <th scope="col" class="<%=  table_large %>">Quantity of Equipment</th>
+
+            <th scope="col" class="<%=  table_small %>"><%= icon('fas', 'clipboard-list') %> Site</th>
+            <th scope="col" class="<%=  table_small %>"><%= icon('fas', 'tools') %></th>
         </tr>
     </thead>
     <tbody>
         <% @sites.each do |item| %>
             <tr>
-                <td>
+                <td scope="row" class="<%=  table_large %>">
                     <a href="<%= item.url %>"> <%= item.fields["Name"] %>
                     </a>
                 </td>
-                <td>
+                <td class="<%=  table_large %>">
                     <a href="<%= item.url %>"><span class="badge badge-pill badge-primary">
                         <%= item.fields["SiteNumber"] %></span>
                     </a>
                 </td>
-                <td>
+                <td class="<%=  table_large %>">
                     <%= item.fields["SiteAddress"] %>, <%= item.fields["SiteCity"] %> <%= item.fields["Postal Code"] %>
                 </td>
-                <td>
+                <td class="<%=  table_large %>">
+                    <%= item.num_equipment %>
+                </td>
+            </tr>
+
+            <tr>
+                <td scope="row" class="<%=  table_small %>">
+                    <a href="<%= item.url %>"> <%= item.fields["Name"] %> <span class="badge badge-pill badge-primary">
+                        <%= item.fields["SiteNumber"] %></span>
+                    </a><br>
+                     <%= item.fields["SiteAddress"] %>, <%= item.fields["SiteCity"] %> <%= item.fields["Postal Code"] %>
+                </td>
+                <td class="<%=  table_small %>">
                     <%= item.num_equipment %>
                 </td>
             </tr>

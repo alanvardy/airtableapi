@@ -27,7 +27,7 @@ class ConnectionsController < ApplicationController
   def create
     @connection = Connection.new(connection_params)
     @connection.title = Site.find(@connection.site_id).title
-    Rails.cache.delete("user_#{@connection.id}_sites")
+    Rails.cache.delete("user_#{@connection.user_id}_sites")
     Rails.cache.delete('all_sites')
 
     respond_to do |format|
@@ -46,6 +46,8 @@ class ConnectionsController < ApplicationController
   # PATCH/PUT /connections/1.json
   def update
     @connection.update_attribute(:title, Site.find(@connection.site_id).title)
+    Rails.cache.delete("user_#{@connection.user_id}_sites")
+    Rails.cache.delete('all_sites')
     respond_to do |format|
       if @connection.update(connection_params)
         flash[:info] = 'Connection was successfully updated.'

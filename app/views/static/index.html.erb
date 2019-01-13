@@ -19,5 +19,7 @@ sorted manner, accessible by computer or mobile device.
 </ul>
 
 <div class="text-center my-5">
-    <%= link_to 'Try it out!', login_path, class: 'btn btn-lg btn-primary' %>
+    <%= link_to login_path, class: 'btn btn-lg btn-primary' do %>
+        Try it now <%= icon('fas', 'arrow-circle-right') %>
+    <% end %>
 </div>

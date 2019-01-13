@@ -1,48 +1,55 @@
+<div class="d-flex justify-content-between">
+<div>
+    <h1><%= @site.fields["Name"] %> </h1>
+</div>
+<div>
+    <h2><span class="badge badge-pill badge-primary"><%= @site.fields["SiteNumber"] %></span></h2>
+</div>
 
-    <h1><%= @site.fields["Name"] %></h1>
-    <p><span class="badge badge-pill badge-primary"><%= @site.fields["SiteNumber"] %></span>
-    <%= @site.fields["SiteAddress"] %>, <%= @site.fields["SiteCity"] %> <%= @site.fields["Postal Code"] %></p>
-    <h2>Site Equipment:</h2>
-    <div class="table-responsive">
-        <table class="table table-striped">
+</div>
+<p>
+<%= @site.fields["SiteAddress"] %>, <%= @site.fields["SiteCity"] %> <%= @site.fields["Postal Code"] %></p>
+<h2>Site Equipment:</h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th class="<%=  table_large %>" scope="col">#</th>
+            <th class="<%=  table_large %>" scope="col">Type</th>
+            <th class="<%=  table_large %>" scope="col">Make</th>
+            <th class="<%=  table_large %>" scope="col">Model</th>
+            <th class="<%=  table_large %>" scope="col">Serial</th>
+            <th class="<%=  table_large %>" scope="col">Attachments</th>
+            <th class="<%=  table_large %>" scope="col">More</th>
+
+            <th class="<%=  table_small %>" scope="col">#</th>
+            <th class="<%=  table_small %>" scope="col"><%= icon('fas', 'clipboard-list') %></th>
+            <th class="<%=  table_small %>" scope="col"><%= icon('fas', 'paperclip') %></th>
+        </tr>
+        <% @equipment.each do |item| %>
             <tr>
-                <th class="<%=  table_large %>" scope="col">#</th>
-                <th class="<%=  table_large %>" scope="col">Type</th>
-                <th class="<%=  table_large %>" scope="col">Make</th>
-                <th class="<%=  table_large %>" scope="col">Model</th>
-                <th class="<%=  table_large %>" scope="col">Serial</th>
-                <th class="<%=  table_large %>" scope="col">Attachments</th>
-                <th class="<%=  table_large %>" scope="col">More</th>
+                <th scope="row" class="<%=  table_large %>"><%= link_to item.url do %><span class="badge badge-pill badge-info"><%= item.number %></span><% end %></th>
+                <td class="<%=  table_large %>"><%= item.type %></td>
+                <td class="<%=  table_large %>"><%= item.make %></td>
+                <td class="<%=  table_large %>"><%= item.model %></td>
+                <td class="<%=  table_large %>"><%= item.serial %></td>
+                <td class="<%=  table_large %>"><%= item.num_attachments %></td>
+                <td class="<%=  table_large %>"><%= link_to 'View', item.url %></td>
 
-                <th class="<%=  table_small %>" scope="col">#</th>
-                <th class="<%=  table_small %>" scope="col"><%= icon('fas', 'clipboard-list') %></th>
-                <th class="<%=  table_small %>" scope="col"><%= icon('fas', 'paperclip') %></th>
+                <th scope="row" class="<%=  table_small %>">
+                    <%= link_to item.url do %>
+                        <span class="badge badge-pill badge-info">
+                            <%= item.number %>
+                        </span>
+                    <% end %>
+                </th>
+                <td class="<%=  table_small %>">
+                    <%= link_to item.type, item.url %><br>
+                    <%= item.make %><br>
+                    <span class="text-muted">M: </span><%= item.model %></strong><br>
+                    <span class="text-muted">S: </span><%= item.serial %>
+                </td>
+                <td class="<%=  table_small %>"><%= item.num_attachments %></td>
             </tr>
-            <% @equipment.each do |item| %>
-                <tr>
-                    <th scope="row" class="<%=  table_large %>"><%= link_to item.url do %><span class="badge badge-pill badge-info"><%= item.number %></span><% end %></th>
-                    <td class="<%=  table_large %>"><%= item.type %></td>
-                    <td class="<%=  table_large %>"><%= item.make %></td>
-                    <td class="<%=  table_large %>"><%= item.model %></td>
-                    <td class="<%=  table_large %>"><%= item.serial %></td>
-                    <td class="<%=  table_large %>"><%= item.attachments.count %></td>
-                    <td class="<%=  table_large %>"><%= link_to 'View', item.url %></td>
-
-                    <th scope="row" class="<%=  table_small %>">
-                        <%= link_to item.url do %>
-                            <span class="badge badge-pill badge-info">
-                                <%= item.number %>
-                            </span>
-                        <% end %>
-                    </th>
-                    <td class="<%=  table_small %>">
-                        <%= link_to item.type, item.url %><br>
-                        <%= item.make %><br>
-                        <span class="text-muted">M: </span><%= item.model %></strong><br>
-                        <span class="text-muted">S: </span><%= item.serial %>
-                    </td>
-                    <td class="<%=  table_small %>"><%= item.attachments.count %></td>
-                </tr>
-            <% end %>
-        </table>
-    </div>
+        <% end %>
+    </table>
+</div>
