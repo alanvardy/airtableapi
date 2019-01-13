@@ -8,11 +8,9 @@ class SitesController < ApplicationController
   end
 
   def show
-    if access_level(1) || connected_site?(params[:id])
-      @site = Site.one_cached(params[:id])
-      @equipment = @site.cached_equipment
-    else
-      reject_access
-    end
+    reject_access unless access_level(1) || connected_site?(params[:id])
+
+    @site = Site.one_cached(params[:id])
+    @equipment = @site.cached_equipment
   end
 end
