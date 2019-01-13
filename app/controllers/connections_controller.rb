@@ -27,6 +27,8 @@ class ConnectionsController < ApplicationController
   def create
     @connection = Connection.new(connection_params)
     @connection.title = Site.find(@connection.site_id).title
+    Rails.cache.delete("user_#{@connection.id}_sites")
+    Rails.cache.delete('all_sites')
 
     respond_to do |format|
       if @connection.save

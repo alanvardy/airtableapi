@@ -22,7 +22,7 @@ class User < ApplicationRecord
       # Guard clause because minitest hates the cache block below
       return connections.map { |c| Site.find(c.site_id) } if Rails.env.test?
 
-      Rails.cache.fetch("user_#{id}_sites", expires_in: 1.minute, race_condition_ttl: 30.seconds) do
+      Rails.cache.fetch("user_#{id}_sites", expires_in: 1.month, race_condition_ttl: 30.seconds) do
         puts 'user sites not cached'
         connections.map { |c| Site.find(c.site_id) }
       end

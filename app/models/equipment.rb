@@ -9,11 +9,11 @@ class Equipment < Airrecord::Table
   belongs_to :site, class: 'Site', column: 'Site'
 
   def self.all_cached
-    Rails.cache.fetch('all_equipment', expires_in: 1.minute, race_condition_ttl: 30.seconds ) { puts 'all equipment not cached'; all.reverse }
+    Rails.cache.fetch('all_equipment', expires_in: rand(5..15).minutes, race_condition_ttl: 30.seconds) { puts 'all equipment not cached'; all.reverse }
   end
 
   def self.one_cached(id)
-    Rails.cache.fetch("#{id}_equipment", expires_in: 1.minute, race_condition_ttl: 30.seconds ) { puts 'equipment not cached'; Equipment.find(id) }
+    Rails.cache.fetch("#{id}_equipment", expires_in: rand(5..15).minutes, race_condition_ttl: 30.seconds) { puts 'equipment not cached'; Equipment.find(id) }
   end
 
   def url
