@@ -13,7 +13,7 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index when sufficient permissions' do
-    log_in(users(:client))
+    log_in(users(:linked_client))
     get sites_index_url
     assert_response :success
 
@@ -23,27 +23,27 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "shouldn't get show when not logged in" do
-    get "/sites/#{@@site.id}"
+    get @@site.url
     assert_redirected_to login_path
   end
 
   test "shouldn't get show when insufficient permissions" do
     log_in users(:client)
-    get "/sites/#{@@site.id}"
+    get @@site.url
     assert_redirected_to user_path(users(:client))
   end
 
   test 'should get show with sufficient permissions' do
     log_in users(:linked_client)
-    get "/sites/#{@@site.id}"
+    get @@site.url
     assert_response :success
 
     log_in users(:technician)
-    get "/sites/#{@@site.id}"
+    get @@site.url
     assert_response :success
 
     log_in users(:manager)
-    get "/sites/#{@@site.id}"
+    get @@site.url
     assert_response :success
   end
 end

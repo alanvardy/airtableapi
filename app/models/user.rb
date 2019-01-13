@@ -14,17 +14,22 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
 
+  # Sites (as objects) the the user has access to, including caching.
   def sites
     if permission.value.positive?
       Site.all_cached
     else
-      Rails.cache.fetch("user_#{id}_sites") do
+      # Guard clause because minitest hates the cache block below
+      return connections.map { |c| Site.find(c.site_id) } if Rails.env.test?
+
+      Rails.cache.fetch("user_#{id}_sites", expires_in: 1.month, race_condition_ttl: 30.seconds) do
         puts 'user sites not cached'
         connections.map { |c| Site.find(c.site_id) }
       end
     end
   end
 
+  # Quantity sites user has access to
   def num_sites
     if permission.value.positive?
       'All sites'

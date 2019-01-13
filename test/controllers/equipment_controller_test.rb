@@ -29,27 +29,27 @@ class EquipmentControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'can\'t get site when not logged in' do
-    get "/equipment/#{@@equipment.id}"
+    get @@equipment.url
     assert_redirected_to login_path
   end
 
   test 'can\'t get site when insufficient permissions' do
     log_in users(:client)
-    get "/equipment/#{@@equipment.id}"
+    get @@equipment.url
     assert_redirected_to user_path(users(:client))
   end
 
   test 'can get site when sufficient permissions' do
     log_in users(:linked_client)
-    get "/equipment/#{@@equipment.id}"
+    get @@equipment.url
     assert_response :success
 
     log_in users(:technician)
-    get "/equipment/#{@@equipment.id}"
+    get @@equipment.url
     assert_response :success
 
     log_in users(:manager)
-    get "/equipment/#{@@equipment.id}"
+    get @@equipment.url
     assert_response :success
   end
 end
