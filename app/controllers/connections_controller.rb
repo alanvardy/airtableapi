@@ -16,7 +16,7 @@ class ConnectionsController < ApplicationController
 
   # GET /connections/new
   def new
-    @connection = Connection.new(user_id: params[:user_id])
+    @connection = Connection.new(user_id: params[:user_id], site_id: params[:site_id])
   end
 
   # GET /connections/1/edit

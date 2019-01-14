@@ -24,11 +24,12 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should search sites when sufficient permissions' do
     log_in(users(:technician))
-    good_result = @@sites.count { |site| site.title.include? 'a' }
-    get sites_index_url(params: { q: 'a' })
-    
-    # x2 for opening and closing tags
-    assert_select 'tbody tr', count: good_result * 2
+    good_result = @@sites.count do |site|
+      (site.title + ' ' + site.address).downcase.include? 'tr'
+    end
+    get sites_index_url(params: { q: 'tr' })
+
+    assert_select '.siterow', count: good_result
   end
 
   test "shouldn't get show when not logged in" do

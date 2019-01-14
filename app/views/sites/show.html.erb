@@ -1,17 +1,35 @@
-<div class="d-flex justify-content-between">
-<div>
-    <h1><%= @site.fields["Name"] %> </h1>
+<div class="row">
+    <div class="col-12 col-lg-8">
+        <div class="d-flex justify-content-between">
+        <div>
+            <h1><%= @site.title %> </h1>
+        </div>
+        <div>
+            <h2><span class="badge badge-pill badge-primary"><%= @site.number %></span></h2>
+        </div>
+        </div>
+        <p><%= @site.address %></p>
+    </div>
+    <div class="col-12 col-lg-4">
+        <% if access_level 2 %>
+            <h3>Connected Clients:</h3>
+            <div class="table-responsive">
+                <table class="table">
+                    <% @site.users.each do |user|%>
+                    <tr>
+                        <td scope="row"><%= user.name %></td>
+                        <td><%= link_to 'Show', user %></td>
+                    </tr>
+                    <% end %>
+                </table>
+            </div>
+            <%= link_to 'Add connection', new_connection_path(site_id: @site.id), class: 'btn btn-sm btn-outline-info' %>
+        <% end %>
+        </div>
 </div>
-<div>
-    <h2><span class="badge badge-pill badge-primary"><%= @site.fields["SiteNumber"] %></span></h2>
-</div>
-
-</div>
-<p>
-<%= @site.fields["SiteAddress"] %>, <%= @site.fields["SiteCity"] %> <%= @site.fields["Postal Code"] %></p>
 <h2>Site Equipment:</h2>
 <div class="table-responsive">
-    <table class="table  ">
+    <table class="table">
         <tr>
             <th class="<%=  table_large %>" scope="col">#</th>
             <th class="<%=  table_large %>" scope="col">Type</th>

@@ -5,42 +5,59 @@
             <th scope="col" class="<%=  table_large %>">Site</th>
             <th scope="col" class="<%=  table_large %>">#</th>
             <th scope="col" class="<%=  table_large %>">Address</th>
-            <th scope="col" class="<%=  table_large %>">Quantity of Equipment</th>
+            <th scope="col" class="<%=  table_large %>">Equipment</th>
+            <% if access_level 2 %>
+                <th scope="col" class="<%=  table_large %>">Clients</th>
+            <% end %>
 
             <th scope="col" class="<%=  table_small %>"><%= icon('fas', 'clipboard-list') %> Site</th>
             <th scope="col" class="<%=  table_small %>"><%= icon('fas', 'tools') %></th>
+            <% if access_level 2 %>
+              <th scope="col" class="<%=  table_small %>"><%= icon('fas', 'user') %></th>
+            <% end %>
         </tr>
     </thead>
     <tbody>
         <% @sites.each do |item| %>
-            <tr>
+            <tr class="siterow">
                 <td scope="row" class="<%=  table_large %>">
-                    <a href="<%= item.url %>"> <%= item.fields["Name"] %>
+                    <a href="<%= item.url %>"> <%= item.title %>
                     </a>
                 </td>
                 <td class="<%=  table_large %>">
                     <a href="<%= item.url %>"><span class="badge badge-pill badge-primary">
-                        <%= item.fields["SiteNumber"] %></span>
+                        <%= item.number %></span>
                     </a>
                 </td>
                 <td class="<%=  table_large %>">
-                    <%= item.fields["SiteAddress"] %>, <%= item.fields["SiteCity"] %> <%= item.fields["Postal Code"] %>
+                    <%= item.address %>
                 </td>
                 <td class="<%=  table_large %>">
                     <%= item.num_equipment %>
                 </td>
+                <% if access_level 2 %>
+                    <td class="<%=  table_large %>">
+                        <%= item.num_connections %>
+                    </td>
+                <% end %>
+
             </tr>
 
             <tr>
                 <td scope="row" class="<%=  table_small %>">
-                    <a href="<%= item.url %>"> <%= item.fields["Name"] %> <span class="badge badge-pill badge-primary">
-                        <%= item.fields["SiteNumber"] %></span>
+                    <a href="<%= item.url %>"> <%= item.title %> <span class="badge badge-pill badge-primary">
+                        <%= item.number %></span>
                     </a><br>
-                     <%= item.fields["SiteAddress"] %>, <%= item.fields["SiteCity"] %> <%= item.fields["Postal Code"] %>
+                     <%= item.address %>
                 </td>
                 <td class="<%=  table_small %>">
                     <%= item.num_equipment %>
                 </td>
+                <% if access_level 2 %>
+                    <td class="<%=  table_small %>">
+                        <%= item.num_connections %>
+                    </td>
+                <% end %>
             </tr>
         <% end %>
     </tbody>
