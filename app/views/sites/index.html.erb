@@ -4,11 +4,11 @@
         <div class="col-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3">
             <%= form_with method: :get, url: sites_index_path, local: true, enforce_utf8: false, class: 'input-group' do |f| %>
                 <div class="input-group-prepend">
-                    <%= link_to 'All Sites', {url: sites_index_path, params: {q: ""}}, class: 'btn btn-outline-primary' %>
+                    <%= link_to 'All Sites', {url: sites_index_path, params: {q: ""}}, class: 'btn btn-outline-primary rounded-left' %>
                 </div>
                 <%= f.text_field :q, id: :q, placeholder: 'Search', class: 'form-control' %>
                 <div class="input-group-append">
-                    <%= f.submit :submit, name: nil, class: "btn btn-outline-primary" %>
+                    <%= f.submit 'Submit', name: nil, class: "btn btn-outline-primary" %>
                 </div>
             <% end %>
         </div>
