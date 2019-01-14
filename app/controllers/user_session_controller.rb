@@ -8,7 +8,7 @@ class UserSessionController < ApplicationController
     if user&.authenticate(params[:password])
       flash[:success] = 'You have logged in'
       log_in(user)
-      redirect_to user
+      redirect_to sites_index_path
     else
       flash[:danger] = 'Sorry, wrong credentials'
       redirect_to login_path
