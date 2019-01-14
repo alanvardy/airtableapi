@@ -6,6 +6,7 @@ class Equipment < Airrecord::Table
   self.base_key = ENV['BASE_KEY']
   self.table_name = 'Equipment'
 
+  ### Associations ###
   belongs_to :site, class: 'Site', column: 'Site'
 
   def self.all_cached
@@ -14,10 +15,6 @@ class Equipment < Airrecord::Table
 
   def self.one_cached(id)
     Rails.cache.fetch("#{id}_equipment", expires_in: rand(5..15).minutes, race_condition_ttl: 30.seconds) { puts 'equipment not cached'; Equipment.find(id) }
-  end
-
-  def url
-    "/equipment/#{id}"
   end
 
   def attachments
@@ -30,6 +27,11 @@ class Equipment < Airrecord::Table
 
   def num_attachments
     fields['Attachments'].count
+  end
+
+  ### Attributes ###
+  def url
+    "/equipment/#{id}"
   end
 
   def model

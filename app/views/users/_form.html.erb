@@ -6,7 +6,7 @@
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
     <%= f.input :permission_id, as: :select, collection: Permission.all, label_method: :title %>
-    <%= f.submit "Save", class: 'btn btn-lg btn-outline-primary float-right' %>
+    <%= link_to 'Back', users_path, class: 'btn btn-outline-secondary' %><%= f.submit "Save", class: 'btn btn-outline-primary float-right' %>
 </div>
   </div>
   <% end %>

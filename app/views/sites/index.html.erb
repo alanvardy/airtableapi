@@ -6,7 +6,7 @@
                 <div class="input-group-prepend">
                     <%= link_to 'All Sites', {url: sites_index_path, params: {q: ""}}, class: 'btn btn-outline-primary rounded-left' %>
                 </div>
-                <%= f.text_field :q, id: :q, placeholder: 'Search', class: 'form-control' %>
+                <%= f.text_field :q, id: :q, placeholder: ('Search'), class: 'form-control', value: params[:q] %>
                 <div class="input-group-append">
                     <%= f.submit 'Submit', name: nil, class: "btn btn-outline-primary" %>
                 </div>

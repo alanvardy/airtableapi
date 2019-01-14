@@ -25,8 +25,8 @@ User.create(name: 'George Oscar Bluth, Sr.', email: 'gbluth@example.com', permis
 User.create(name: 'Lucille Bluth', email: 'lbluth@example.com', permission: Permission.find_by(title: 'Manager'), password: 'alanvardy', password_confirmation: 'alanvardy')
 
 Connection.create(user_id: User.find_by(name: 'Clifford Client').id, site_id: Site.all[0].id, title: Site.all[0].fields['Name'])
-Connection.create(user_id: User.find_by(name: 'Clifford Client').id, site_id: Site.all[3].id, title: Site.all[0].fields['Name'])
-Connection.create(user_id: User.find_by(name: 'Clifford Client').id, site_id: Site.all[4].id, title: Site.all[0].fields['Name'])
+Connection.create(user_id: User.find_by(name: 'Clifford Client').id, site_id: Site.all[3].id, title: Site.all[3].fields['Name'])
+Connection.create(user_id: User.find_by(name: 'Clifford Client').id, site_id: Site.all[4].id, title: Site.all[4].fields['Name'])
 Connection.create(user_id: User.find_by(name: 'Mae "Maeby" Fünke').id, site_id: Site.all[1].id, title: Site.all[1].fields['Name'])
 Connection.create(user_id: User.find_by(name: 'Mae "Maeby" Fünke').id, site_id: Site.all[2].id, title: Site.all[2].fields['Name'])
 Connection.create(user_id: User.find_by(name: 'Byron "Buster" Bluth').id, site_id: Site.all[1].id, title: Site.all[1].fields['Name'])

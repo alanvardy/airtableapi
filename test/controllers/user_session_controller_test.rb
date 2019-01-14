@@ -11,7 +11,7 @@ class UserSessionControllerTest < ActionDispatch::IntegrationTest
   test 'should log in' do
     post login_path, params: {  email: users(:client).email,
                                 password: 'password' }
-    assert_redirected_to user_path(users(:client))
+    assert_redirected_to sites_index_path
     assert_equal 'You have logged in', flash[:success]
   end
 
