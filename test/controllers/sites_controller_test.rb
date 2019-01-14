@@ -22,6 +22,15 @@ class SitesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should search sites when sufficient permissions' do
+    log_in(users(:technician))
+    good_result = @@sites.count { |site| site.title.include? 'a' }
+    get sites_index_url(params: { q: 'a' })
+    
+    # x2 for opening and closing tags
+    assert_select 'tbody tr', count: good_result * 2
+  end
+
   test "shouldn't get show when not logged in" do
     get @@site.url
     assert_redirected_to login_path

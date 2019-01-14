@@ -4,7 +4,13 @@ class SitesController < ApplicationController
   before_action -> { check_access_level(0) }
 
   def index
-    @sites = current_user.sites
+    if current_user.sites.count < 7
+      @sites = current_user.sites
+      @search = false
+    else
+      @sites = Site.search(params[:q], current_user.sites)
+      @search = true
+    end
   end
 
   def show
