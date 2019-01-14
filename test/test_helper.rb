@@ -8,7 +8,8 @@ require_relative '../config/environment'
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
-  @@site = Site.all.first
+  @@sites = Site.all
+  @@site = @@sites.first
   @@equipment = @@site.equipment.first
 
   fixtures :all

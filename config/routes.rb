@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'session/destroy'
   get 'sites/index'
   get 'sites/show'
+  get 'sites/search'
   get 'sites/:id', to: 'sites#show'
   root 'static#index'
   get 'equipment/index'
