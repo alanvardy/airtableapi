@@ -1,5 +1,5 @@
 <div class="table-responsive mt-3">
-    <table class="table  ">
+    <table class="table table-striped">
     <thead>
         <tr>
             <th scope="col" class="<%=  table_large %>">Site</th>
@@ -35,15 +35,6 @@
                 <td class="<%=  table_large %>">
                     <%= item.num_equipment %>
                 </td>
-                <% if access_level 2 %>
-                    <td class="<%=  table_large %>">
-                        <%= item.num_connections %>
-                    </td>
-                <% end %>
-
-            </tr>
-
-            <tr>
                 <td scope="row" class="<%=  table_small %>">
                     <a href="<%= item.url %>"> <%= item.title %> <span class="badge badge-pill badge-primary">
                         <%= item.number %></span>
@@ -54,7 +45,7 @@
                     <%= item.num_equipment %>
                 </td>
                 <% if access_level 2 %>
-                    <td class="<%=  table_small %>">
+                    <td class="<%=  table_large %>">
                         <%= item.num_connections %>
                     </td>
                 <% end %>

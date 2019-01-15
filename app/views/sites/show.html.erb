@@ -29,7 +29,7 @@
 </div>
 <h2>Site Equipment:</h2>
 <div class="table-responsive">
-    <table class="table">
+    <table class="table table-striped">
         <tr>
             <th class="<%=  table_large %>" scope="col">#</th>
             <th class="<%=  table_large %>" scope="col">Type</th>
@@ -45,7 +45,7 @@
         </tr>
         <% @equipment.each do |item| %>
             <tr>
-                <th scope="row" class="<%=  table_large %>"><%= link_to item.url do %><span class="badge badge-pill badge-info"><%= item.number %></span><% end %></th>
+                <td scope="row" class="<%=  table_large %>"><%= link_to item.url do %><span class="badge badge-pill badge-info"><%= item.number %></span><% end %></th>
                 <td class="<%=  table_large %>"><%= item.type %></td>
                 <td class="<%=  table_large %>"><%= item.make %></td>
                 <td class="<%=  table_large %>"><%= item.model %></td>
